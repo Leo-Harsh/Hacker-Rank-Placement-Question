@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the hourglassSum function below.
+int hourglassSum(vector<vector<int>> arr) {
+int len,i,j,max_1=-63,temp=0,k1=0,k2=-1;
+for(int y =1;y<5;y++){
+k1=0;
+k2++;
+for (int x=0;x<4;x++)
+{
+        k1++;
+    temp=temp+arr[y][k1];
+
+for(i=k2;i<k2+3;i++)
+{
+          j=x;
+         temp+=arr[i][j]+arr[i][j+1]+arr[i][j+2];
+         i++;
+         }
+
+if(temp>max_1)
+{
+    max_1=temp;
+}
+
+temp=0;
+
+}
+
+}
+return max_1;
+}
+
+
+
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    vector<vector<int>> arr(6);
+    for (int i = 0; i < 6; i++) {
+        arr[i].resize(6);
+
+        for (int j = 0; j < 6; j++) {
+            cin >> arr[i][j];
+        }
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    int result = hourglassSum(arr);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
